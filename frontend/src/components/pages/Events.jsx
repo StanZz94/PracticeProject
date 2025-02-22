@@ -1,9 +1,12 @@
+import { useLoaderData } from 'react-router-dom';
 import EventsList from '../EventsList';
 
 function EventsPage() {
+  const events = useLoaderData();
+
   return (
     <>
-      <EventsList events={fetchedEvents} />
+      <EventsList events={events} />
     </>
   );
 }
