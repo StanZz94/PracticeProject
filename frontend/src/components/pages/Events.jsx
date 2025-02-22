@@ -11,4 +11,15 @@ function EventsPage() {
   );
 }
 
+export async function loader() {
+  const response = await fetch('http://localhost:8081/events');
+
+  if (!response.ok) {
+    // set arror
+  } else {
+    const resData = await response.json();
+    return resData.events
+  }
+}
+
 export default EventsPage;
