@@ -3,6 +3,11 @@ import EventsList from '../EventsList';
 
 function EventsPage() {
   const data = useLoaderData();
+
+  if(data.isError) {
+    return <p>{data.message}</p>
+  }
+
   const events = data.events;
 
   return (
@@ -16,7 +21,7 @@ export async function loader() {
   const response = await fetch('http://localhost:8081/events');
 
   if (!response.ok) {
-    // set arror
+    return {isError: true, message: 'Could not fetch events!'}
   } else {
     return response
   }
