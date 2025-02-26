@@ -9,7 +9,7 @@ export default function ErrorPage() {
     let message = 'Something went wrong!';
 
     if (error.status === 500) {
-        message = JSON.parse(error.data).massage
+        message = error.data.massage
     }
 
     if (error.status === 404) {
