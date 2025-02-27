@@ -9,6 +9,7 @@ function EventsPage() {
   }
 
   const events = data.events;
+  
 
   return (
     <>
@@ -18,7 +19,7 @@ function EventsPage() {
 }
 
 export async function loader() {
-  const response = await fetch('http://localhost:8081/events');
+  const response = await fetch('http://localhost:8083/events');
 
   if (!response.ok) {
     // return {isError: true, message: 'Could not fetch events!'}
