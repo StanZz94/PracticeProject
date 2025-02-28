@@ -1,6 +1,6 @@
+import EventForm from "../EventForm";
+
 export default function EditEventPage() {
 
-    return <>
-        <h1>Edit Event</h1>
-    </>
+    return <EventForm />
 }
