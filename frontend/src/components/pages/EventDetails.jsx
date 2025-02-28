@@ -5,7 +5,7 @@ export default function EventDetails() {
     const data = useRouteLoaderData('event-details');
 
     return <>
-        <EventItem event={data.event}/>
+        <EventItem event={data.event} />
     </>
 }
 

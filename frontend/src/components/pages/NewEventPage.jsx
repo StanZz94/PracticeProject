@@ -6,7 +6,7 @@ export default function NewEventPage() {
     return <EventForm />
 }
 
-export async function action({request, params}) {
+export async function action({ request, params }) {
     const data = await request.formData();
 
     const eventData = {

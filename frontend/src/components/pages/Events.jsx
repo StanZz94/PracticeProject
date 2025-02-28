@@ -9,7 +9,7 @@ function EventsPage() {
   }
 
   const events = data.events;
-  
+
 
   return (
     <>
