@@ -3,7 +3,7 @@ import EventItem from '../EventItem'
 
 export default function EventDetails() {
     const data = useLoaderData();
-    console.log(data.event)
+    
     return <>
         <EventItem event={data.event}/>
     </>
