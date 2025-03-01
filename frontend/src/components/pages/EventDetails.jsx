@@ -28,12 +28,12 @@ export async function loader({ request, params }) {
 
 export async function action({ request, params }) {
   const eventId = params.eventId;
-  const response = await fetch('http://localhost:8083/events' + eventId, {
+  const response = await fetch('http://localhost:8083/events/' + eventId, {
     method: request.method,
   });
 
   if (!response.ok) {
-    throw new Response(JSON.stringify({ message: 'Cloud not fetch events!' }), {
+    throw new Response(JSON.stringify({ message: 'Cloud not delete event!' }), {
       status: 500,
     });
   }
