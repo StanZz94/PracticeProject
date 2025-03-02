@@ -1,4 +1,4 @@
-import { Form, useNavigate, useNavigation, useActionData } from 'react-router-dom';
+import { Form, useNavigate, useNavigation, useActionData, redirect } from 'react-router-dom';
 
 import classes from './EventForm.module.css';
 
@@ -14,13 +14,13 @@ function EventForm({ method, event }) {
   }
 
   return (
-    <Form method='post' className={classes.form}>
+    <Form method={method} className={classes.form}>
       {data && data.errors && <ul>
           {Object.values(data.errors).map(err => <li key={err}>{err}</li>)}
         </ul>}
       <p>
         <label htmlFor="title">Title</label>
-        <input id="title" type="text" name="title" defaultValue={event ? event.title : ''}  />
+        <input id="title" type="text" name="title" defaultValue={event ? event.title : ''} required />
       </p>
       <p>
         <label htmlFor="image">Image</label>
@@ -45,3 +45,34 @@ function EventForm({ method, event }) {
 }
 
 export default EventForm;
+
+export async function action({ request, params }) {
+  const data = await request.formData();
+
+  const eventData = {
+      title: data.get('title'),
+      image: data.get('image'),
+      date: data.get('date'),
+      description: data.get('description'),
+  };
+
+  const response = await fetch('http://localhost:8083/events', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(eventData),
+  });
+
+  if (response.status === 422) {
+      return response;
+  }
+
+  if (!response.ok) {
+      throw new Response(JSON.stringify({ message: 'Cloud not fetch events!' }), {
+          status: 500,
+      });
+  }
+
+  return redirect('/events')
+}
