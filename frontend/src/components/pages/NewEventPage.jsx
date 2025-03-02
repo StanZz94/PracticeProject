@@ -24,14 +24,14 @@ export async function action({ request, params }) {
         body: JSON.stringify(eventData),
     });
 
+    if (response.status === 422) {
+        return response;
+    }
+
     if (!response.ok) {
-        // return {isError: true, message: 'Could not fetch events!'}
         throw new Response(JSON.stringify({ message: 'Cloud not fetch events!' }), {
             status: 500,
         });
-        //return json({ message: 'Cloud not fetch events!' },
-        //  { status: 500, }
-        //)
     }
 
     return redirect('/events')
