@@ -8,10 +8,10 @@ function NewsletterSignup() {
   const { data, state } = fetcher;
 
   useEffect(() => {
-    if(state === 'idle' && data && data.message) {
+    if (state === 'idle' && data && data.message) {
       window.alert('Signup successful!')
     }
-  },[data, state]);
+  }, [data, state]);
 
   return (
     <fetcher.Form method="post" action='/newsletter' className={classes.newsletter}>
